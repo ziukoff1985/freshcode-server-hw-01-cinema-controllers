@@ -23,12 +23,12 @@ PUT http://localhost:5000/movies HTTP/1.1
 Content-Type: application/json
 
 {
-    "id": 23,
+    "id": 28,
     "title": "Apocalypse Now",
-    "year": 2014,
+    "year": "2014-11-05",
     "poster": "https://m.media-amazon.com/images/M/MV5BMTIwNDE2ODI1MV5BMl5BanBnXkFtZTgwMTc4NzQ2NjE@._V1_SX300.jpg",
-    "genreId": 7,
-    "studioId": 4
+    "genre": "Horror",
+    "studio": "Warner Bros"
 }
 
 ###

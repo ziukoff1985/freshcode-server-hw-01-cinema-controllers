@@ -55,6 +55,29 @@ class MoviesController {
             console.log(error);
         }
     }
+
+    async updateMovie(req, res) {
+        try {
+            const { id, title, year, poster, genre, studio } = req.body;
+            const updatedMovie = await db.query(
+                `
+                UPDATE movies
+                SET title=$2, year=$3, poster=$4, genreid=
+                (SELECT id FROM genres WHERE title=$5), studioid=
+                (SELECT id FROM studios WHERE title=$6)
+                WHERE id=$1
+                RETURNING *
+                `,
+                [id, title, year, poster, genre, studio],
+            );
+            if (updatedMovie.rows.length === 0) {
+                return res.status(404).send('Movie not found');
+            }
+            res.status(200).json(updatedMovie.rows[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new MoviesController();

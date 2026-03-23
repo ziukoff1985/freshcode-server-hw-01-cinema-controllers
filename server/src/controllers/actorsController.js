@@ -22,7 +22,7 @@ class ActorsController {
                 SELECT actors.id, actors.full_name, actors.birth_year, actors.death_year, actors.photo, countries.description AS country
                 FROM actors
                 JOIN countries ON actors.countryid = countries.id
-                WHERE actors.id = $1
+                WHERE actors.id=$1
                 `,
                 [actorId],
             );
@@ -40,12 +40,32 @@ class ActorsController {
             const newActor = await db.query(
                 `
                 INSERT INTO actors (full_name, birth_year, death_year, photo, countryid)
-                VALUES ($1, $2, $3, $4, (SELECT id FROM countries WHERE description = $5))
+                VALUES ($1, $2, $3, $4, (SELECT id FROM countries WHERE description=$5))
                 RETURNING *
                 `,
                 [full_name, birth_year, death_year, photo, country],
             );
             res.status(201).json(newActor.rows[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async updateActor(req, res) {
+        try {
+            const { id, full_name, birth_year, death_year, photo, country } =
+                req.body;
+            const updatedActor = await db.query(
+                `
+                UPDATE actors
+                SET full_name=$2, birth_year=$3, death_year=$4, photo=$5, countryid=
+                (SELECT id FROM countries WHERE description=$6)
+                WHERE id=$1
+                RETURNING *
+                `,
+                [id, full_name, birth_year, death_year, photo, country],
+            );
+            res.status(200).json(updatedActor.rows[0]);
         } catch (error) {
             console.log(error);
         }

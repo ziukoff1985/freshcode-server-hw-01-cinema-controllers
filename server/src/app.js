@@ -3,6 +3,7 @@ const express = require('express');
 const ActorsController = require('./controllers/actorsController');
 const DirectorsController = require('./controllers/directorsController');
 const MoviesController = require('./controllers/moviesController');
+const StudiosController = require('./controllers/studiosController');
 
 const app = express();
 app.use(express.json());
@@ -28,5 +29,11 @@ app.get('/movies/:movieId', MoviesController.getMovieById);
 app.post('/movies', MoviesController.createMovie);
 app.put('/movies', MoviesController.updateMovie);
 app.delete('/movies/:movieId', MoviesController.deleteMovie);
+
+app.get('/studios', StudiosController.getAllStudios);
+app.get('/studios/:studioId', () => {});
+app.post('/studios', () => {});
+app.put('/studios', () => {});
+app.delete('/studios/:studioId', () => {});
 
 module.exports = app;

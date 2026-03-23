@@ -2,6 +2,7 @@ const express = require('express');
 
 const ActorsController = require('./controllers/actorsController');
 const DirectorsController = require('./controllers/directorsController');
+const MoviesController = require('./controllers/moviesController');
 
 const app = express();
 app.use(express.json());
@@ -21,5 +22,11 @@ app.get('/directors/:directorId', DirectorsController.getDirectorById);
 app.post('/directors', DirectorsController.createDirector);
 app.put('/directors', DirectorsController.updateDirector);
 app.delete('/directors/:directorId', DirectorsController.deleteDirector);
+
+app.get('/movies', MoviesController.getAllMovies);
+// app.get('/movies/:movieId', MoviesController.getMovieById);
+// app.post('/movies', MoviesController.createMovie);
+// app.put('/movies', MoviesController.updateMovie);
+// app.delete('/movies/:movieId', MoviesController.deleteMovie);
 
 module.exports = app;

@@ -76,6 +76,26 @@ class DirectorsController {
             console.log(error);
         }
     }
+
+    async deleteDirector(req, res) {
+        try {
+            const { directorId } = req.params;
+            const deletedDirector = await db.query(
+                `
+                DELETE FROM directors
+                WHERE id=$1
+                RETURNING full_name, id
+                `,
+                [directorId],
+            );
+            if (deletedDirector.rows.length === 0) {
+                return res.status(404).send('Director not found');
+            }
+            res.status(200).json(deletedDirector.rows[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new DirectorsController();

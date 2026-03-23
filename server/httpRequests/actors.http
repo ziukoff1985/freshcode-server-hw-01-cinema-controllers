@@ -1,1 +1,5 @@
+GET http://localhost:5000/actors
+
 ###
+
+GET http://localhost:5000/actors/25

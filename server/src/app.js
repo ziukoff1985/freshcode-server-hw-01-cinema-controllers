@@ -1,11 +1,15 @@
 const express = require('express');
+
+const ActorsController = require('./controllers/actorsController');
+
 const app = express();
-const port = process.env.PORT || 5000;
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('This is the home page!');
 });
 
-app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-});
+app.get('/actors', ActorsController.getAllActors);
+app.get('/actors/:actorId', ActorsController.getActorById);
+
+module.exports = app;

@@ -33,4 +33,4 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:5000/actors/467
+DELETE http://localhost:5000/actors/28

@@ -13,6 +13,6 @@ app.get('/actors', ActorsController.getAllActors);
 app.get('/actors/:actorId', ActorsController.getActorById);
 app.post('/actors', ActorsController.createActor);
 app.put('/actors', ActorsController.updateActor);
-// app.delete('/actors/:actorId', ActorsController.deleteActor);
+app.delete('/actors/:actorId', ActorsController.deleteActor);
 
 module.exports = app;

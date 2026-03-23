@@ -30,3 +30,7 @@ Content-Type: application/json
     "photo": "https://upload.wikimedia.org/wikipedia/commons/0/07/Harrison_Ford_-_Televerse_2025_%28cropped%29.jpg",
     "country": "Italy"
 }
+
+###
+
+DELETE http://localhost:5000/actors/467

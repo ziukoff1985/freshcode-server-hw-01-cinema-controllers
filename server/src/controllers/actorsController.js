@@ -26,6 +26,9 @@ class ActorsController {
                 `,
                 [actorId],
             );
+            if (actor.rows.length === 0) {
+                return res.status(404).send('Actor not found');
+            }
             res.status(200).json(actor.rows[0]);
         } catch (error) {
             console.log(error);
@@ -65,7 +68,30 @@ class ActorsController {
                 `,
                 [id, full_name, birth_year, death_year, photo, country],
             );
+            if (updatedActor.rows.length === 0) {
+                return res.status(404).send('Actor not found');
+            }
             res.status(200).json(updatedActor.rows[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async deleteActor(req, res) {
+        try {
+            const { actorId } = req.params;
+            const deletedActor = await db.query(
+                `
+                DELETE FROM actors
+                WHERE id=$1
+                RETURNING full_name, id
+                `,
+                [actorId],
+            );
+            if (deletedActor.rows.length === 0) {
+                return res.status(404).send('Actor not found');
+            }
+            res.status(200).json(deletedActor.rows[0]);
         } catch (error) {
             console.log(error);
         }

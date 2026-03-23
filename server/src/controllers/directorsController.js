@@ -53,6 +53,29 @@ class DirectorsController {
             console.log(error);
         }
     }
+
+    async updateDirector(req, res) {
+        try {
+            const { id, full_name, birth_year, death_year, photo, country } =
+                req.body;
+            const updatedDirector = await db.query(
+                `
+                UPDATE directors
+                SET full_name=$2, birth_year=$3, death_year=$4, photo=$5, countryid=
+                (SELECT id FROM countries WHERE description=$6)
+                WHERE id=$1
+                RETURNING *
+                `,
+                [id, full_name, birth_year, death_year, photo, country],
+            );
+            if (updatedDirector.rows.length === 0) {
+                return res.status(404).send('Director not found');
+            }
+            res.status(200).json(updatedDirector.rows[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new DirectorsController();

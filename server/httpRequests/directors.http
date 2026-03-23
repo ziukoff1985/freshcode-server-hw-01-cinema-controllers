@@ -10,11 +10,11 @@ POST http://localhost:5000/directors HTTP/1.1
 Content-Type: application/json
 
 {
-    "full_name": "James Cameron",
+    "full_name": "Kirk De Micco",
     "birth_year": "1954-08-16",
     "death_year": "1990-05-08",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/0/0c/James_Cameron_by_Gage_Skidmore.jpg",
-    "country": "United States"
+    "country": "United Kingdom"
 }
 
 ###

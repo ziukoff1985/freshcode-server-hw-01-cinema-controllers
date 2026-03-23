@@ -18,7 +18,7 @@ app.delete('/actors/:actorId', ActorsController.deleteActor);
 
 app.get('/directors', DirectorsController.getAllDirectors);
 app.get('/directors/:directorId', DirectorsController.getDirectorById);
-// app.post('/directors', DirectorsController.createDirector);
+app.post('/directors', DirectorsController.createDirector);
 // app.put('/directors', DirectorsController.updateDirector);
 // app.delete('/directors/:directorId', DirectorsController.deleteDirector);
 

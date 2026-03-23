@@ -34,6 +34,25 @@ class DirectorsController {
             console.log(error);
         }
     }
+
+    async createDirector(req, res) {
+        try {
+            const { full_name, birth_year, death_year, photo, country } =
+                req.body;
+            console.log(req.body);
+            const newDirector = await db.query(
+                `
+                INSERT INTO directors (full_name, birth_year, death_year, photo, countryid)
+                VALUES ($1, $2, $3, $4, (SELECT id FROM countries WHERE description=$5))
+                RETURNING *
+                `,
+                [full_name, birth_year, death_year, photo, country],
+            );
+            res.status(201).json(newDirector.rows[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new DirectorsController();

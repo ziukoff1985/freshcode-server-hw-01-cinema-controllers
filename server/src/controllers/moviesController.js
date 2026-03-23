@@ -37,6 +37,24 @@ class MoviesController {
             console.log(error);
         }
     }
+
+    async createMovie(req, res) {
+        try {
+            const { title, year, poster, genre, studio } = req.body;
+            console.log(req.body);
+            const newMovie = await db.query(
+                `
+                INSERT INTO movies (title, year, poster, genreid, studioid)
+                VALUES ($1, $2, $3, (SELECT id FROM genres WHERE title=$4), (SELECT id FROM studios WHERE title=$5))
+                RETURNING *
+                `,
+                [title, year, poster, genre, studio],
+            );
+            res.status(201).json(newMovie.rows[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new MoviesController();

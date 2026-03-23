@@ -31,6 +31,25 @@ class ActorsController {
             console.log(error);
         }
     }
+
+    async createActor(req, res) {
+        try {
+            const { full_name, birth_year, death_year, photo, country } =
+                req.body;
+            console.log(req.body);
+            const newActor = await db.query(
+                `
+                INSERT INTO actors (full_name, birth_year, death_year, photo, countryid)
+                VALUES ($1, $2, $3, $4, (SELECT id FROM countries WHERE description = $5))
+                RETURNING *
+                `,
+                [full_name, birth_year, death_year, photo, country],
+            );
+            res.status(201).json(newActor.rows[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new ActorsController();

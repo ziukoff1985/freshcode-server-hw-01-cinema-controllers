@@ -11,5 +11,6 @@ app.get('/', (req, res) => {
 
 app.get('/actors', ActorsController.getAllActors);
 app.get('/actors/:actorId', ActorsController.getActorById);
+app.post('/actors', ActorsController.createActor);
 
 module.exports = app;

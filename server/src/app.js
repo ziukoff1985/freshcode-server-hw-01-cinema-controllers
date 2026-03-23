@@ -27,6 +27,6 @@ app.get('/movies', MoviesController.getAllMovies);
 app.get('/movies/:movieId', MoviesController.getMovieById);
 app.post('/movies', MoviesController.createMovie);
 app.put('/movies', MoviesController.updateMovie);
-// app.delete('/movies/:movieId', MoviesController.deleteMovie);
+app.delete('/movies/:movieId', MoviesController.deleteMovie);
 
 module.exports = app;

@@ -78,6 +78,26 @@ class MoviesController {
             console.log(error);
         }
     }
+
+    async deleteMovie(req, res) {
+        try {
+            const { movieId } = req.params;
+            const deletedMovie = await db.query(
+                `
+                DELETE FROM movies
+                WHERE id=$1
+                RETURNING title, id
+                `,
+                [movieId],
+            );
+            if (deletedMovie.rows.length === 0) {
+                return res.status(404).send('Movie not found');
+            }
+            res.status(200).json(deletedMovie.rows[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new MoviesController();

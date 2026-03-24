@@ -10,9 +10,10 @@ POST http://localhost:5000/studios HTTP/1.1
 Content-Type: application/json
 
 {
-    "title": "Warner Bros",
+    "title": "Bilbao Films",
     "logo": "https://m.media-amazon.com/images/M/MV5BMTIwNDE2ODI1MV5BMl5BanBnXkFtZTgwMTc4NzQ2NjE@._V1_SX300.jpg",
-    "locationid": 1
+    "country": "BE",
+    "city": "Brussels"
 }
 
 ###

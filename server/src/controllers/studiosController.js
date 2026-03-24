@@ -36,6 +36,24 @@ class StudiosController {
             console.log(error);
         }
     }
+
+    async createStudio(req, res) {
+        try {
+            const { title, logo, country, city } = req.body;
+            console.log(req.body);
+            const newStudio = await db.query(
+                `
+                INSERT INTO studios (title, logo, locationid)
+                VALUES ($1, $2, (SELECT id FROM locations WHERE city=$3 AND countryid=(SELECT id FROM countries WHERE title=$4)))
+                RETURNING *
+                `,
+                [title, logo, city, country],
+            );
+            res.status(201).json(newStudio.rows[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new StudiosController();

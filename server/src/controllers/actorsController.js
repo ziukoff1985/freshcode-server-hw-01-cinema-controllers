@@ -4,7 +4,8 @@ class ActorsController {
     async getAllActors(req, res) {
         try {
             const actors = await db.query(
-                `SELECT full_name, birth_year, id FROM actors
+                `SELECT id, full_name, birth_year, death_year 
+                FROM actors
                 ORDER BY id
                 `,
             );

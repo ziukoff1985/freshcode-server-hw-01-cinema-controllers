@@ -11,6 +11,7 @@ class DirectorsController {
             res.status(200).json(directors.rows);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -32,6 +33,7 @@ class DirectorsController {
             res.status(200).json(director.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -50,6 +52,7 @@ class DirectorsController {
             res.status(201).json(newDirector.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -73,6 +76,7 @@ class DirectorsController {
             res.status(200).json(updatedDirector.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -93,6 +97,7 @@ class DirectorsController {
             res.status(200).json(deletedDirector.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 }

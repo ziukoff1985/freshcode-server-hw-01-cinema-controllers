@@ -54,6 +54,24 @@ class StudiosController {
             console.log(error);
         }
     }
+
+    async updateStudio(req, res) {
+        const { id, title, logo, country, city } = req.body;
+        const updatedStudio = await db.query(
+            `
+            UPDATE studios
+            SET title=$2, logo=$3, locationid=
+            (SELECT id FROM locations WHERE city=$4 AND countryid=(SELECT id FROM countries WHERE title=$5))
+            WHERE id=$1
+            RETURNING *
+            `,
+            [id, title, logo, city, country],
+        );
+        if (updatedStudio.rows.length === 0) {
+            return res.status(404).send('Studio not found');
+        }
+        res.status(200).json(updatedStudio.rows[0]);
+    }
 }
 
 module.exports = new StudiosController();

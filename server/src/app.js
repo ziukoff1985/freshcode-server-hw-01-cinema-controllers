@@ -33,7 +33,7 @@ app.delete('/movies/:movieId', MoviesController.deleteMovie);
 app.get('/studios', StudiosController.getAllStudios);
 app.get('/studios/:studioId', StudiosController.getStudioById);
 app.post('/studios', StudiosController.createStudio);
-app.put('/studios', () => {});
+app.put('/studios', StudiosController.updateStudio);
 app.delete('/studios/:studioId', () => {});
 
 module.exports = app;

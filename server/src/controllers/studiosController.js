@@ -12,6 +12,7 @@ class StudiosController {
             res.status(200).json(studios.rows);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -34,13 +35,13 @@ class StudiosController {
             res.status(200).json(studio.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
     async createStudio(req, res) {
         try {
             const { title, logo, country, city } = req.body;
-            console.log(req.body);
             const newStudio = await db.query(
                 `
                 INSERT INTO studios (title, logo, locationid)
@@ -52,6 +53,7 @@ class StudiosController {
             res.status(201).json(newStudio.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -74,6 +76,7 @@ class StudiosController {
             res.status(200).json(updatedStudio.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -94,6 +97,7 @@ class StudiosController {
             res.status(200).json(deletedStudio.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 }

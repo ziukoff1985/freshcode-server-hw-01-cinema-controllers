@@ -11,6 +11,7 @@ class ActorsController {
             res.status(200).json(actors.rows);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -32,6 +33,7 @@ class ActorsController {
             res.status(200).json(actor.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -39,11 +41,10 @@ class ActorsController {
         try {
             const { full_name, birth_year, death_year, photo, country } =
                 req.body;
-            console.log(req.body);
             const newActor = await db.query(
                 `
                 INSERT INTO actors (full_name, birth_year, death_year, photo, countryid)
-                VALUES ($1, $2, $3, $4, (SELECT id FROM countries WHERE description=$5))
+                VALUES ($1, $2, $3, $4, (SELECT id FROM countries WHERE title=$5))
                 RETURNING *
                 `,
                 [full_name, birth_year, death_year, photo, country],
@@ -51,6 +52,7 @@ class ActorsController {
             res.status(201).json(newActor.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -62,7 +64,7 @@ class ActorsController {
                 `
                 UPDATE actors
                 SET full_name=$2, birth_year=$3, death_year=$4, photo=$5, countryid=
-                (SELECT id FROM countries WHERE description=$6)
+                (SELECT id FROM countries WHERE title=$6)
                 WHERE id=$1
                 RETURNING *
                 `,
@@ -74,6 +76,7 @@ class ActorsController {
             res.status(200).json(updatedActor.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -94,6 +97,7 @@ class ActorsController {
             res.status(200).json(deletedActor.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 }

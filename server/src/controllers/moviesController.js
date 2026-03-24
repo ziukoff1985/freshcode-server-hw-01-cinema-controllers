@@ -13,6 +13,7 @@ class MoviesController {
             res.status(200).json(movies.rows);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -35,13 +36,13 @@ class MoviesController {
             res.status(200).json(movie.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
     async createMovie(req, res) {
         try {
             const { title, year, poster, genre, studio } = req.body;
-            console.log(req.body);
             const newMovie = await db.query(
                 `
                 INSERT INTO movies (title, year, poster, genreid, studioid)
@@ -53,6 +54,7 @@ class MoviesController {
             res.status(201).json(newMovie.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -76,6 +78,7 @@ class MoviesController {
             res.status(200).json(updatedMovie.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 
@@ -96,6 +99,7 @@ class MoviesController {
             res.status(200).json(deletedMovie.rows[0]);
         } catch (error) {
             console.log(error);
+            res.status(500).send('Internal server error');
         }
     }
 }

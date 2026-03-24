@@ -39,11 +39,10 @@ class DirectorsController {
         try {
             const { full_name, birth_year, death_year, photo, country } =
                 req.body;
-            console.log(req.body);
             const newDirector = await db.query(
                 `
                 INSERT INTO directors (full_name, birth_year, death_year, photo, countryid)
-                VALUES ($1, $2, $3, $4, (SELECT id FROM countries WHERE description=$5))
+                VALUES ($1, $2, $3, $4, (SELECT id FROM countries WHERE title=$5))
                 RETURNING *
                 `,
                 [full_name, birth_year, death_year, photo, country],
@@ -62,7 +61,7 @@ class DirectorsController {
                 `
                 UPDATE directors
                 SET full_name=$2, birth_year=$3, death_year=$4, photo=$5, countryid=
-                (SELECT id FROM countries WHERE description=$6)
+                (SELECT id FROM countries WHERE title=$6)
                 WHERE id=$1
                 RETURNING *
                 `,

@@ -14,7 +14,7 @@ Content-Type: application/json
     "birth_year": "1989-01-14",
     "death_year": "2026-02-24",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/0/07/Harrison_Ford_-_Televerse_2025_%28cropped%29.jpg",
-    "country": "Germany"
+    "country": "DE"
 }
 
 ###
@@ -28,7 +28,7 @@ Content-Type: application/json
     "birth_year": "1989-01-14",
     "death_year": "2026-02-24",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/0/07/Harrison_Ford_-_Televerse_2025_%28cropped%29.jpg",
-    "country": "Italy"
+    "country": "IT"
 }
 
 ###

@@ -2,7 +2,7 @@ GET http://localhost:5000/movies
 
 ###
 
-GET http://localhost:5000/movies/23
+GET http://localhost:5000/movies/6
 
 ###
 
@@ -10,7 +10,7 @@ POST http://localhost:5000/movies HTTP/1.1
 Content-Type: application/json
 
 {
-    "title": "Interstellar (2014)",
+    "title": "Apocalypse Now",
     "year": "2014-11-05",
     "poster": "https://m.media-amazon.com/images/M/MV5BMTIwNDE2ODI1MV5BMl5BanBnXkFtZTgwMTc4NzQ2NjE@._V1_SX300.jpg",
     "genre": "Horror",
@@ -23,14 +23,14 @@ PUT http://localhost:5000/movies HTTP/1.1
 Content-Type: application/json
 
 {
-    "id": 28,
-    "title": "Apocalypse Now",
+    "id": 21,
+    "title": "Running Scared",
     "year": "2014-11-05",
     "poster": "https://m.media-amazon.com/images/M/MV5BMTIwNDE2ODI1MV5BMl5BanBnXkFtZTgwMTc4NzQ2NjE@._V1_SX300.jpg",
-    "genre": "Horror",
+    "genre": "Drama",
     "studio": "Warner Bros"
 }
 
 ###
 
-DELETE http://localhost:5000/movies/55
+DELETE http://localhost:5000/movies/21

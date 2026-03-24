@@ -5,7 +5,7 @@ class MoviesController {
         try {
             const movies = await db.query(
                 `
-                SELECT title, year, id, poster
+                SELECT id, title, year, poster
                 FROM movies
                 ORDER BY id
                 `,
@@ -22,7 +22,7 @@ class MoviesController {
             const { movieId } = req.params;
             const movie = await db.query(
                 `
-                SELECT movies.title, movies.year, movies.id, movies.poster, genres.title AS genre, studios.title AS studio 
+                SELECT movies.id, movies.title, movies.year, movies.poster, genres.title AS genre, studios.title AS studio 
                 FROM movies
                 JOIN genres ON movies.genreid = genres.id
                 JOIN studios ON movies.studioid = studios.id

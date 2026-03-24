@@ -4,9 +4,11 @@ class StudiosController {
     async getAllStudios(req, res) {
         try {
             const studios = await db.query(
-                `SELECT id, title, logo 
+                `SELECT studios.id, studios.title, studios.logo, countries.description AS country, locations.city AS city
                 FROM studios
-                ORDER BY id
+                JOIN locations ON studios.locationid = locations.id
+                JOIN countries ON locations.countryid = countries.id
+                ORDER BY studios.id
                 `,
             );
             res.status(200).json(studios.rows);

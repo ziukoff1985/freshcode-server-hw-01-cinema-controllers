@@ -2,7 +2,7 @@ GET  http://localhost:5000/studios
 
 ###
 
-GET http://localhost:5000/studios/1
+GET http://localhost:5000/studios/6
 
 ###
 
@@ -12,8 +12,8 @@ Content-Type: application/json
 {
     "title": "MGM",
     "logo": "https://m.media-amazon.com/images/M/MV5BMTIwNDE2ODI1MV5BMl5BanBnXkFtZTgwMTc4NzQ2NjE@._V1_SX300.jpg",
-    "country": "FR",
-    "city": "Paris"
+    "country": "CAN",
+    "city": "Toronto"
 }
 
 ###
@@ -22,13 +22,13 @@ PUT http://localhost:5000/studios HTTP/1.1
 Content-Type: application/json
 
 {
-    "id": 5,
+    "id": 11,
     "title": "Yoshi Yamamoto Films",
     "logo": "https://m.media-amazon.com/images/M/MV5BMTIwNDE2ODI1MV5BMl5BanBnXkFtZTgwMTc4NzQ2NjE@._V1_SX300.jpg",
-    "country": "IT",
+    "country": "ITA",
     "city": "Rome"
 }
 
 ###
 
-DELETE http://localhost:5000/studios/19
+DELETE http://localhost:5000/studios/12

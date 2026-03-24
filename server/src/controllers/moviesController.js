@@ -5,9 +5,11 @@ class MoviesController {
         try {
             const movies = await db.query(
                 `
-                SELECT id, title, year, poster
+                SELECT movies.id, movies.title, movies.year, movies.poster, genres.title AS genre, studios.title AS studio
                 FROM movies
-                ORDER BY id
+                JOIN genres ON movies.genreid = genres.id
+                JOIN studios ON movies.studioid = studios.id
+                ORDER BY movies.id
                 `,
             );
             res.status(200).json(movies.rows);

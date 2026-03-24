@@ -4,9 +4,10 @@ class ActorsController {
     async getAllActors(req, res) {
         try {
             const actors = await db.query(
-                `SELECT id, full_name, birth_year, death_year 
+                `SELECT actors.id, actors.full_name, actors.birth_year, actors.death_year, actors.photo, countries.description AS country
                 FROM actors
-                ORDER BY id
+                JOIN countries ON actors.countryid = countries.id
+                ORDER BY actors.id
                 `,
             );
             res.status(200).json(actors.rows);
